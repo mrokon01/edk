@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endotek: Powering Nigeria's Tomorrow, Today.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        /* Basic Reset & Fonts */
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f8f9fa; /* Light background for the whole page */
+        }
+
+        /* Endotek Crystal Blue Color Palette */
+        :root {
+            --endotek-blue-dark: #004080; /* Deep, credible blue */
+            --endotek-blue-medium: #007bff; /* Vibrant, action-oriented blue */
+            --endotek-blue-light: #e0f2ff; /* Soft, background blue */
+            --text-dark: #333;
+            --text-light: #f8f9fa;
+            --shadow-soft: 0 5px 15px rgba(0,0,0,0.1); /* Soft shadow for depth */
+            --shadow-strong: 0 8px 25px rgba(0,0,0,0.2); /* Stronger shadow for emphasis */
+            --transition-speed: 0.4s;
+            --border-radius-main: 12px;
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 6rem 5%; /* Increased padding for more breathing room */
+            margin: 0 auto;
+            max-width: 1200px;
+            position: relative; /* For animations */
+            opacity: 0; /* Hidden by default for scroll animation */
+            transform: translateY(30px); /* Slight initial offset */
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section:nth-of-type(even) {
+            background-color: var(--endotek-blue-light);
+        }
+
+        section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem; /* Larger headings */
+            color: var(--endotek-blue-dark);
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 100px; /* Wider underline */
+            height: 5px; /* Thicker underline */
+            background-color: var(--endotek-blue-medium);
+            margin: 1.2rem auto 0;
+            border-radius: 3px;
+        }
+
+        /* Header & Navigation */
+        .header {
+            background-color: var(--endotek-blue-dark);
+            color: var(--text-light);
+            padding: 1.2rem 5%; /* More vertical padding */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-soft);
+            transition: background-color var(--transition-speed) ease;
+        }
+
+        .header.scrolled {
+            background-color: rgba(0, 64, 128, 0.95); /* Slightly transparent on scroll */
+            box-shadow: var(--shadow-strong);
+        }
+
+        .header .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2.5rem; /* More spacing */
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500; /* Slightly bolder */
+            font-size: 1.1rem;
+            position: relative; /* For underline effect */
+            transition: color var(--transition-speed) ease;
+        }
+
+        .nav-links a::after { /* Animated underline */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            background-color: var(--endotek-blue-light);
+            left: 0;
+            bottom: -5px;
+            transition: width var(--transition-speed) ease-out;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--endotek-blue-light);
+        }
+
+        /* Utility Links */
+        .header .utility-links {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .header .utility-links select,
+        .header .utility-links span {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            cursor: pointer;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+        }
+        .header .utility-links select option {
+            background-color: var(--endotek-blue-dark);
+            color: var(--text-light);
+        }
+        .header .utility-links span:hover,
+        .header .utility-links select:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 64, 128, 0.85), rgba(0, 64, 128, 0.85)), url('https://images.unsplash.com/photo-1621243805936-793303rdxdf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHw0OXx8bmlnZXJpYW4lMjBsYW5kc2NhcGV8ZW58MHx8fHwxNzIwOTQ4MzIwfDA&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 10rem 5%; /* Larger hero section */
+            min-height: 700px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            clip-path: polygon(0 0, 100% 0, 100% 95%, 0% 100%); /* Slight angled bottom */
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem; /* More impactful heading */
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.4);
+        }
+
+        .hero p {
+            font-size: 1.6rem;
+            max-width: 900px;
+            margin-bottom: 3rem;
+            font-weight: 300;
+        }
+
+        .hero .cta-buttons a {
+            display: inline-block;
+            background-color: var(--endotek-blue-medium);
+            color: var(--text-light);
+            padding: 1rem 2.5rem;
+            margin: 0 1.2rem;
+            border-radius: 8px; /* Slightly rounded */
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all var(--transition-speed) ease;
+            border: 2px solid var(--endotek-blue-medium);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .hero .cta-buttons a:hover {
+            background-color: var(--endotek-blue-dark);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow-strong);
+        }
+        .hero .cta-buttons a:last-child {
+            background-color: transparent;
+            border-color: var(--text-light);
+            color: var(--text-light);
+        }
+        .hero .cta-buttons a:last-child:hover {
+            background-color: var(--endotek-blue-light);
+            color: var(--endotek-blue-dark);
+            border-color: var(--endotek-blue-light);
+        }
+
+        /* Introduction Section */
+        .intro p {
+            font-size: 1.3rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            color: var(--text-dark);
+        }
+
+        /* Key Pillars Section */
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem; /* Increased gap */
+            margin-top: 4rem;
+        }
+
+        .pillar-item {
+            background-color: #fff;
+            padding: 3rem; /* More padding */
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+            position: relative;
+            overflow: hidden; /* For pseudo-element hover effect */
+        }
+
+        .pillar-item::before { /* Animated background on hover */
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--endotek-blue-medium), var(--endotek-blue-dark));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--transition-speed) ease;
+            z-index: -1;
+            border-radius: var(--border-radius-main);
+        }
+
+        .pillar-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .pillar-item:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-strong);
+            color: var(--text-light); /* Text color change on hover */
+        }
+        .pillar-item:hover h3,
+        .pillar-item:hover p,
+        .pillar-item:hover .cta-button-small {
+            color: var(--text-light);
+        }
+        .pillar-item:hover .cta-button-small {
+            border-color: var(--text-light);
+        }
+
+
+        .pillar-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            color: var(--endotek-blue-dark);
+            margin-bottom: 1.2rem;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .pillar-item p {
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            transition: color var(--transition-speed) ease;
+        }
+
+        .pillar-item .cta-button-small {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--endotek-blue-medium);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--endotek-blue-medium);
+            padding-bottom: 5px;
+            transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+
+
+        /* CEO Section */
+        .ceo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 5rem 5%;
+            background-color: var(--endotek-blue-light);
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-soft);
+            margin-top: 5rem;
+        }
+
+        .ceo-section img {
+            width: 220px; /* Slightly larger image */
+            height: 220px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--endotek-blue-medium); /* Thicker border */
+            margin-bottom: 2.5rem;
+            box-shadow: var(--shadow-soft);
+            transition: transform var(--transition-speed) ease;
+        }
+        .ceo-section img:hover {
+            transform: scale(1.05);
+        }
+
+        .ceo-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.4rem;
+            color: var(--endotek-blue-dark);
+            margin-bottom: 1.2rem;
+        }
+
+        .ceo-section p {
+            font-size: 1.15rem;
+            max-width: 850px;
+            margin: 0 auto;
+            color: #555;
+        }
+
+        /* Projects & News Section (Unified Styling) */
+        .content-grid { /* Generic grid for projects and news */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .content-item { /* Generic item for projects and news */
+            background-color: #fff;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .content-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .content-item img {
+            width: 100%;
+            height: 280px; /* Taller images */
+            object-fit: cover;
+            display: block;
+            transition: transform var(--transition-speed) ease;
+        }
+        .content-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .content-body {
+            padding: 2rem;
+        }
+
+        .content-body h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--endotek-blue-dark);
+            margin-bottom: 1rem;
+        }
+
+        .content-body p {
+            font-size: 1.05rem;
+            margin-bottom: 1.8rem;
+            color: #555;
+        }
+
+        .content-body .cta-button-small {
+            display: inline-block;
+            color: var(--endotek-blue-medium);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid var(--endotek-blue-medium);
+            padding-bottom: 5px;
+            transition: color var(--transition-speed) ease, border-color var(--transition-speed) ease;
+        }
+        .content-body .cta-button-small:hover {
+            color: var(--endotek-blue-dark);
+            border-color: var(--endotek-blue-dark);
+        }
+
+        /* Call to Action Bottom Section */
+        .cta-bottom {
+            background: linear-gradient(rgba(0, 64, 128, 0.9), rgba(0, 64, 128, 0.9)), url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHwyMHx8bmlnZXJpYW4lMjB0ZWFtJTIwd29ya3xlbnwwfHx8fDE3MjA5NDgzMTZ8MA&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center/cover;
+            color: var(--text-light);
+            text-align: center;
+            padding: 7rem 5%;
+            border-radius: var(--border-radius-main);
+            margin-bottom: 5rem;
+            box-shadow: var(--shadow-strong);
+            clip-path: polygon(0 5%, 100% 0, 100% 100%, 0% 95%); /* Inverted angled top/bottom */
+        }
+
+        .cta-bottom h2 {
+            color: var(--text-light);
+            margin-bottom: 2.5rem;
+        }
+        .cta-bottom h2::after {
+            background-color: var(--endotek-blue-light);
+        }
+
+        /* Contact Form */
+        .contact-form-container {
+            max-width: 800px; /* Wider form */
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 3.5rem; /* More padding */
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-strong);
+        }
+
+        .contact-form-container form {
+            display: grid;
+            gap: 1.8rem; /* More space between fields */
+        }
+
+        .contact-form-container label {
+            font-weight: 600;
+            color: var(--endotek-blue-dark);
+            font-size: 1.1rem;
+        }
+
+        .contact-form-container input[type="text"],
+        .contact-form-container input[type="email"],
+        .contact-form-container textarea {
+            width: 100%;
+            padding: 1rem; /* Larger input fields */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1.05rem;
+            box-sizing: border-box;
+            transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+
+        .contact-form-container input:focus,
+        .contact-form-container textarea:focus {
+            border-color: var(--endotek-blue-medium);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .contact-form-container textarea {
+            resize: vertical;
+            min-height: 150px; /* Taller textarea */
+        }
+
+        .contact-form-container button {
+            background-color: var(--endotek-blue-medium);
+            color: var(--text-light);
+            padding: 1.2rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-form-container button:hover {
+            background-color: var(--endotek-blue-dark);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-strong);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--endotek-blue-dark);
+            color: var(--text-light);
+            padding: 4rem 5%; /* More padding */
+            text-align: center;
+            font-size: 0.95rem;
+            border-top-left-radius: var(--border-radius-main);
+            border-top-right-radius: var(--border-radius-main);
+            margin-top: 5rem;
+        }
+
+        .footer .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer .footer-links {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem 2.5rem;
+        }
+
+        .footer .footer-links a {
+            color: var(--endotek-blue-light);
+            text-decoration: none;
+            transition: color var(--transition-speed) ease;
+        }
+
+        .footer .footer-links a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .footer .social-icons a {
+            color: var(--text-light);
+            font-size: 1.8rem; /* Larger icons */
+            margin: 0 1rem;
+            text-decoration: none;
+            transition: color var(--transition-speed) ease, transform 0.2s ease;
+        }
+        .footer .social-icons a:hover {
+            color: var(--endotek-blue-light);
+            transform: translateY(-3px);
+        }
+
+        /* Investor Portal & Community Hub Specific Styles */
+        .tab-section {
+            background-color: #fff;
+            padding: 3rem 5%;
+            max-width: 1200px;
+            margin: -6rem auto 3rem; /* Pull it up into the hero or intro section for prominence */
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-strong);
+            z-index: 10;
+            position: relative; /* Ensure it stays above other content */
+        }
+
+        .tab-navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 3rem; /* Space below tabs */
+            border-bottom: 2px solid var(--endotek-blue-light); /* Subtle separator */
+        }
+        .tab-navigation button {
+            background-color: transparent;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--endotek-blue-dark);
+            cursor: pointer;
+            position: relative;
+            transition: all var(--transition-speed) ease;
+            flex-grow: 1; /* Make buttons expand to fill space */
+            max-width: 300px;
+        }
+        .tab-navigation button::after { /* Animated underline for tabs */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 4px;
+            background-color: var(--endotek-blue-medium);
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 0;
+            transition: width var(--transition-speed) ease-out;
+        }
+        .tab-navigation button.active {
+            color: var(--endotek-blue-medium);
+        }
+        .tab-navigation button.active::after {
+            width: 100%;
+        }
+        .tab-navigation button:hover:not(.active) {
+            color: #555;
+        }
+
+        .tab-navigation button:hover::after:not(.active) {
+            width: 50%;
+        }
+
+
+        .content-tab-panel {
+            display: none;
+            padding: 2rem 0; /* Adjust padding for inner content */
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        .content-tab-panel.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sub-tab-navigation { /* For nested tabs */
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .sub-tab-navigation button {
+            background-color: var(--endotek-blue-light);
+            border: 1px solid var(--endotek-blue-medium);
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--endotek-blue-dark);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+        }
+        .sub-tab-navigation button.active,
+        .sub-tab-navigation button:hover {
+            background-color: var(--endotek-blue-medium);
+            color: var(--text-light);
+            box-shadow: var(--shadow-soft);
+            transform: translateY(-2px);
+        }
+
+        .sub-content-panel {
+            display: none;
+            padding: 1.5rem 0;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        .sub-content-panel.active {
+            display: block;
+        }
+
+        .investor-grid, .community-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .investor-item, .community-item {
+            background-color: #fff;
+            padding: 2.5rem;
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-soft);
+            text-align: center;
+            transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+        }
+        .investor-item:hover, .community-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-strong);
+        }
+        .investor-item h3, .community-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--endotek-blue-dark);
+            font-size: 1.7rem;
+            margin-bottom: 1rem;
+        }
+        .investor-item p, .community-item p {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+        .investor-item .cta-button, .community-item .cta-button {
+            background-color: var(--endotek-blue-medium);
+            color: var(--text-light);
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+        }
+        .investor-item .cta-button:hover, .community-item .cta-button:hover {
+            background-color: var(--endotek-blue-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Progress Bars & Metrics */
+        .metrics-overview {
+            margin-top: 3.5rem;
+            padding: 2.5rem;
+            background-color: var(--endotek-blue-light);
+            border-radius: var(--border-radius-main);
+            text-align: center;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.08);
+        }
+        .metrics-overview h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--endotek-blue-dark);
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+        .metric-item {
+            margin-bottom: 2rem;
+        }
+        .metric-item p {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 0.8rem;
+        }
+        .progress-bar-container {
+            width: 90%;
+            background-color: #E0E0E0;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0 auto;
+            height: 20px; /* Taller bar */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--endotek-blue-medium);
+            width: 0%;
+            transition: width 1.5s ease-in-out; /* Slower animation */
+            border-radius: 8px;
+            position: relative;
+        }
+        .progress-bar-fill span { /* Percentage text */
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Floating Action Buttons */
+        .floating-action-buttons {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* More space */
+            z-index: 999;
+        }
+
+        .fab-item {
+            background-color: var(--endotek-blue-medium);
+            color: var(--text-light);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 15px;
+            box-shadow: var(--shadow-strong);
+            cursor: pointer;
+            transition: all var(--transition-speed) ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+        .fab-item:hover {
+            background-color: var(--endotek-blue-dark);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        /* Modal Overlays */
+        .modal-overlay {
+            display: flex;
+            visibility: hidden; /* Use visibility for smooth transition */
+            opacity: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8); /* Darker overlay */
+            z-index: 10000; /* Higher z-index */
+            justify-content: center;
+            align-items: center;
+            transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+        }
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #FFF;
+            padding: 40px; /* More padding */
+            border-radius: var(--border-radius-main);
+            box-shadow: var(--shadow-strong);
+            max-width: 500px; /* Wider modals */
+            width: 90%;
+            text-align: center;
+            position: relative;
+            color: var(--text-dark);
+            transform: translateY(50px); /* Initial offset for animation */
+            transition: transform var(--transition-speed) ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .modal-content h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--endotek-blue-dark);
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+        .modal-content p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+        .modal-content ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            font-size: 1rem;
+            color: #555;
+        }
+        .modal-content ul li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .modal-content ul li::before {
+            content: '✓';
+            color: var(--endotek-blue-medium);
+            position: absolute;
+            left: 0;
+        }
+        .modal-content button {
+            background-color: var(--endotek-blue-medium);
+            color: var(--text-light);
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 0.7rem;
+            transition: background-color var(--transition-speed) ease, transform 0.2s ease;
+        }
+        .modal-content button:hover {
+            background-color: var(--endotek-blue-dark);
+            transform: translateY(-2px);
+        }
+        .modal-content input[type="text"], .modal-content textarea {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .modal-content select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 18px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            background-color: #f9f9f9;
+            font-size: 1rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .nav-links {
+                margin-top: 1.5rem;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            .nav-links li {
+                margin-left: 0;
+            }
+            .utility-links {
+                margin-top: 1rem;
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .hero p {
+                font-size: 1.3rem;
+            }
+            section h2 {
+                font-size: 2.5rem;
+            }
+            .tab-navigation button {
+                font-size: 1.1rem;
+                padding: 0.8rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 5%;
+                min-height: 550px;
+            }
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            .hero p {
+                font-size: 1.1rem;
+            }
+            .hero .cta-buttons a {
+                display: block;
+                margin: 1rem 0;
+                width: 80%; /* Make buttons full width */
+                margin-left: auto;
+                margin-right: auto;
+            }
+            section {
+                padding: 4rem 5%;
+            }
+            section h2 {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
+            }
+            .pillars-grid, .content-grid, .investor-grid, .community-grid {
+                grid-template-columns: 1fr;
+            }
+            .pillar-item, .content-item, .investor-item, .community-item {
+                padding: 2.5rem;
+            }
+            .ceo-section img {
+                width: 180px;
+                height: 180px;
+            }
+            .ceo-section h3 {
+                font-size: 2rem;
+            }
+            .ceo-section p {
+                font-size: 1rem;
+            }
+            .tab-section {
+                margin: -4rem auto 2rem;
+                padding: 2rem 5%;
+            }
+            .tab-navigation {
+                flex-direction: column;
+            }
+            .tab-navigation button {
+                width: 100%;
+                max-width: none;
+                margin-bottom: 0.5rem;
+            }
+            .sub-tab-navigation {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .sub-tab-navigation button {
+                width: 100%;
+            }
+            .modal-content {
+                padding: 30px;
+            }
+            .modal-content h3 {
+                font-size: 1.8rem;
+            }
+            .floating-action-buttons {
+                bottom: 15px;
+                right: 15px;
+                gap: 10px;
+            }
+            .fab-item {
+                padding: 8px 12px;
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <a href="#home" class="logo">Endotek</a>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#what-we-do">What We Do</a></li>
+                <li><a href="#projects">Our Initiatives</a></li>
+                <li><a href="#news-insights">Insights</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="utility-links">
+            <select id="language" aria-label="Select Language">
+                <option value="en">English</option>
+                <option value="ha">Hausa</option>
+                <option value="yo">Yoruba</option>
+                <option value="ig">Igbo</option>
+                <option value="pi">Pidgin</option>
+            </select>
+            <span onclick="toggleModal('premium-modal-overlay')" role="button" aria-label="Premium Subscription">Premium</span>
+            <span onclick="toggleModal('chatbot-modal-overlay')" role="button" aria-label="Open AI Chatbot">Chatbot</span>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Endotek: Pioneering Nigeria's Sustainable Future.</h1>
+        <p>Driving Innovation and Empowerment Across Agriculture, Environment, and Community Development in Nigeria and Beyond.</p>
+        <div class="cta-buttons">
+            <a href="#investor-portal-tab">Invest with Impact</a>
+            <a href="#community-hub-tab">Join Our Movement</a>
+        </div>
+    </section>
+
+    <div class="tab-section">
+        <div class="tab-navigation">
+            <button onclick="showTab('investor-portal-tab', this)" class="active">Investor Portal</button>
+            <button onclick="showTab('community-hub-tab', this)">Community Hub</button>
+        </div>
+
+        <div class="content-tab-panel active" id="investor-portal-tab">
+            <h2>Invest in a Sustainable Nigerian Future.</h2>
+            <p class="intro">Endotek offers compelling opportunities for investors looking to make a significant impact while achieving sustainable returns. Our data-driven approach and proven track record ensure your investment fuels tangible progress.</p>
+
+            <div class="investor-grid">
+                <div class="investor-item">
+                    <h3>Impact Investment</h3>
+                    <p>Align your capital with projects that deliver measurable social and environmental benefits alongside financial returns.</p>
+                    <a href="#contact" class="cta-button">Discuss Opportunities</a>
+                </div>
+                <div class="investor-item">
+                    <h3>Transparent Metrics</h3>
+                    <p>Access real-time analytics and detailed reports on project progress, financial performance, and impact data.</p>
+                    <a href="#" class="cta-button">View Live Dashboard</a>
+                </div>
+                <div class="investor-item">
+                    <h3>Scalable Solutions</h3>
+                    <p>Our innovative models are designed for nationwide scalability, offering exponential growth potential and widespread positive change.</p>
+                    <a href="#what-we-do" class="cta-button">Explore Our Pillars</a>
+                </div>
+                <div class="investor-item">
+                    <h3>Secure Partnership</h3>
+                    <p>Benefit from robust governance, compliance with Nigerian data protection regulations (NDPR), and blockchain-backed transparency for crowdfunding initiatives.</p>
+                    <a href="#contact" class="cta-button">Partner with Us</a>
+                </div>
+            </div>
+
+            <div class="metrics-overview">
+                <h3>Our Impact at a Glance (Live Data)</h3>
+                <div class="metric-item">
+                    <p>Total Capital Deployed: <span id="capital-deployed">₦500,000,000</span></p>
+                    <div class="progress-bar-container"><div id="capital-progress" class="progress-bar-fill" style="width: 0%;"><span class="progress-text">0%</span></div></div>
+                </div>
+                <div class="metric-item">
+                    <p>Projects Successfully Scaled: <span id="scaled-projects">12</span></p>
+                    <div class="progress-bar-container"><div id="scaled-progress" class="progress-bar-fill" style="width: 0%;"><span class="progress-text">0%</span></div></div>
+                </div>
+                <div class="metric-item">
+                    <p>Community Beneficiaries: <span id="beneficiary-count">150,000</span></p>
+                    <div class="progress-bar-container"><div id="beneficiary-progress" class="progress-bar-fill" style="width: 0%;"><span class="progress-text">0%</span></div></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-tab-panel" id="community-hub-tab">
+            <h2>Endotek Community Hub: Connect, Learn, Thrive.</h2>
+            <p class="intro">Join a vibrant network of Nigerians driving positive change. Our hub provides tools and resources to foster unity, share knowledge, and collaborate on initiatives that empower communities.</p>
+
+            <div class="sub-tab-navigation">
+                <button onclick="showSubTab('forum-panel', this)" class="active">Community Forum</button>
+                <button onclick="showSubTab('skills-panel', this)">Skill-Sharing</button>
+                <button onclick="showSubTab('marketplace-panel', this)">Marketplace</button>
+                <button onclick="showSubTab('crowdfunding-panel', this)">Crowdfunding</button>
+            </div>
+
+            <div class="sub-content-panel active" id="forum-panel">
+                <h3>Vibrant Discussions, AI-Moderated.</h3>
+                <p>Connect with fellow Nigerians, share ideas on sustainable development, and engage in constructive dialogue across various topics. Our advanced AI moderation ensures a safe and respectful environment for all discussions.</p>
+                <div class="community-grid">
+                    <div class="community-item">
+                        <h4>Recent Discussions</h4>
+                        <p>Topic: Future of Agriculture in Bayelsa</p>
+                        <a href="#" class="cta-button" onclick="alert('Navigating to Community Forum (Simulated)')">Join Discussion</a>
+                    </div>
+                    <div class="community-item">
+                        <h4>Popular Topics</h4>
+                        <p>Green Energy Solutions for Rural Areas</p>
+                        <a href="#" class="cta-button" onclick="alert('Navigating to Community Forum (Simulated)')">Explore Topic</a>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="cta-button" onclick="alert('Creating New Forum Post (Simulated)')">Create New Post</a>
+                </div>
+            </div>
+
+            <div class="sub-content-panel" id="skills-panel">
+                <h3>Empower Through Peer-to-Peer Learning.</h3>
+                <p>Access a diverse range of courses and workshops taught by community experts. Whether you're looking to acquire new skills or share your knowledge, our platform facilitates growth and empowerment.</p>
+                <div class="community-grid">
+                    <div class="community-item">
+                        <h4>Featured Course: Sustainable Farming Techniques</h4>
+                        <p>Tutor: Ibrahim, Kaduna. Learn modern, eco-friendly methods.</p>
+                        <a href="#" class="cta-button" onclick="alert('Enrolling in Course (Simulated)')">Enroll Now</a>
+                    </div>
+                    <div class="community-item">
+                        <h4>Workshop: Basic Digital Literacy for Entrepreneurs</h4>
+                        <p>Tutor: Aisha, Lagos. Equip yourself with essential online skills.</p>
+                        <a href="#" class="cta-button" onclick="alert('Registering for Workshop (Simulated)')">Register</a>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="cta-button" onclick="alert('Become a Tutor (Simulated)')">Become a Tutor</a>
+                </div>
+            </div>
+
+            <div class="sub-content-panel" id="marketplace-panel">
+                <h3>Support Local, Buy Nigerian.</h3>
+                <p>Our decentralized marketplace connects producers directly with consumers, fostering local commerce and economic resilience across Nigeria. Discover unique products and fair trade opportunities.</p>
+                <div class="community-grid">
+                    <div class="community-item">
+                        <h4>Artisan Crafts: Hand-woven Kente Cloth</h4>
+                        <p>Seller: Emeka, Abia. Support traditional Nigerian artistry.</p>
+                        <a href="#" class="cta-button" onclick="alert('Adding Kente Cloth to Cart (Simulated)')">View Product</a>
+                    </div>
+                    <div class="community-item">
+                        <h4>Fresh Produce: Organic Cassava Flour</h4>
+                        <p>Seller: Fatima, Niger. Directly from sustainable farms.</p>
+                        <a href="#" class="cta-button" onclick="alert('Adding Cassava Flour to Cart (Simulated)')">Buy Now</a>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="cta-button" onclick="alert('List Your Products (Simulated)')">Sell Your Products</a>
+                </div>
+            </div>
+
+            <div class="sub-content-panel" id="crowdfunding-panel">
+                <h3>Fund Innovation, Transparently.</h3>
+                <p>Empower grassroots initiatives and community projects with blockchain-backed crowdfunding. See exactly where your contributions go and the impact they create.</p>
+                <div class="community-grid">
+                    <div class="community-item">
+                        <h4>Project: Rural Electrification via Solar Micro-Grids</h4>
+                        <p>Location: Osun. Goal: ₦5M | Raised: ₦3.5M</p>
+                        <div class="progress-bar-container" style="width: 100%;"><div class="progress-bar-fill" style="width: 70%;"><span class="progress-text">70%</span></div></div>
+                        <a href="#" class="cta-button" onclick="alert('Pledging to Solar Project (Simulated)')" style="margin-top: 1rem;">Pledge Now</a>
+                    </div>
+                    <div class="community-item">
+                        <h4>Project: Clean Water Borehole Initiative</h4>
+                        <p>Location: Benue. Goal: ₦1.5M | Raised: ₦800K</p>
+                        <div class="progress-bar-container" style="width: 100%;"><div class="progress-bar-fill" style="width: 53%;"><span class="progress-text">53%</span></div></div>
+                        <a href="#" class="cta-button" onclick="alert('Pledging to Water Project (Simulated)')" style="margin-top: 1rem;">Contribute</a>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="cta-button" onclick="alert('Start Your Own Campaign (Simulated)')">Start a Campaign</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <section class="fade-in" id="about">
+        <h2>Unlocking Nigeria's Vast Possibilities.</h2>
+        <p class="intro">At Endotek, we are a pioneering force committed to transforming Nigeria's landscape through cutting-edge innovation and sustainable development. Led by our founder, a renowned environmental and analytical chemist, we fuse scientific expertise with grassroots action to cultivate thriving communities, revolutionize agriculture, and safeguard our environment for generations to come. We're not just providing solutions; we're building a model for progress across Africa.</p>
+    </section>
+
+    <section class="fade-in" id="what-we-do">
+        <h2>Our Core Pillars of Impact.</h2>
+        <div class="pillars-grid">
+            <div class="pillar-item">
+                <h3>Environmental Solutions</h3>
+                <p>From advanced remediation techniques to sustainable resource management, Endotek applies scientific rigor to address Nigeria's most pressing environmental challenges. We develop and implement scalable solutions for clean water, waste-to-energy, and ecological restoration.</p>
+                <a href="#projects" class="cta-button-small">Discover Our Environmental Projects &rarr;</a>
+            </div>
+            <div class="pillar-item">
+                <h3>Agricultural Innovation</h3>
+                <p>We empower farmers and communities with innovative agricultural practices, utilizing scientific insights to boost yields, enhance food security, and promote eco-friendly farming. Our research-driven approaches lead to resilient and productive agricultural systems.</p>
+                <a href="#projects" class="cta-button-small">See Our Agricultural Initiatives &rarr;</a>
+            </div>
+            <div class="pillar-item">
+                <h3>Community Development</h3>
+                <p>Grassroots development is at the heart of Endotek. We invest in human potential through education, vocational training, and entrepreneurship programs, fostering a new generation of bright, vibrant minds ready to drive positive change in their communities.</p>
+                <a href="#projects" class="cta-button-small">Learn About Our Community Programs &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="fade-in ceo-section">
+        <h2>Visionary Leadership: Science Driving Impact.</h2>
+        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHw1fHxuaWdlcmlhbiUyMGNoZW1pc3R8ZW58MHx8fHwxNzIwOTQ4NTQ5fDA&ixlib=rb-4.0.3&q=80&w=400" alt="Endotek CEO" onerror="this.onerror=null;this.src='https://via.placeholder.com/220x220/007bff/FFFFFF?text=CEO';">
+        <p>Endotek is built on a foundation of scientific excellence, spearheaded by our founder and CEO, **Prof E.O Ekanem FCSN**, a globally recognized Environmental and Analytical Chemist. His deep expertise informs every aspect of our work, from groundbreaking research to practical, scalable solutions. He believes that sustainable innovation holds the key to Nigeria's immense potential.</p>
+    </section>
+
+    <section class="fade-in" id="projects">
+        <h2>Innovating for Real-World Impact.</h2>
+        <div class="content-grid">
+            <div class="content-item">
+                <img src="https://images.unsplash.com/photo-1587321151659-198270597282?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHw1fHxhZ3JpY3VsdHVyZSUyMG5pZ2VyaWF8ZW58MHx8fHwxNzIwOTQ4Njg2fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Bio-Fertilizer Project" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x280/004080/FFFFFF?text=Bio-Fertilizer+Project';">
+                <div class="content-body">
+                    <h3>The Bio-Fertilizer Revolution</h3>
+                    <p>Our pilot program in Southern Nigeria is transforming agriculture by leveraging local plant seeds to develop renewable, organic fertilizers. This not only boosts crop yields sustainably but also creates new circular economic opportunities for local farmers.</p>
+                    <a href="#" class="cta-button-small">Read the Case Study &rarr;</a>
+                </div>
+            </div>
+            <div class="content-item">
+                <img src="https://images.unsplash.com/photo-1509040409848-1b5e28a6f212?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHwyMnx8cmVuZXdhYmxlJTIwZW5lcmd5JTIwbmlnZXJpYXxlbnwwfHx8fDE3MjA5NDgyODJ8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Eco-Energy Project" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x280/007bff/FFFFFF?text=Eco-Energy+Project';">
+                <div class="content-body">
+                    <h3>Eco-Energy for Tomorrow</h3>
+                    <p>Exploring beyond conventional fuels, Endotek's research is investigating innovative methods of converting organic matter, like specific soil compositions, into renewable energy sources capable of powering vehicles and off-grid solutions. This pioneering research aims to redefine energy independence.</p>
+                    <a href="#" class="cta-button-small">Explore Our Research &rarr;</a>
+                </div>
+            </div>
+            <div class="content-item">
+                <img src="https://images.unsplash.com/photo-1628108422477-94d3c3f91d03?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHwyMHx8bmlnZXJpYW4lMjBjaGlsZHJlbiUyMGVkdWNhdGlvbnxlbnwwfHx8fDE3MjA5NDgyNzl8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Community Empowerment Project" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x280/004080/FFFFFF?text=Community+Empowerment';">
+                <div class="content-body">
+                    <h3>Sustainable Livelihoods Initiative</h3>
+                    <p>Working hand-in-hand with communities, we're implementing vocational training programs and micro-enterprise support, empowering individuals with the skills and resources needed for economic independence and sustainable living.</p>
+                    <a href="#" class="cta-button-small">View Community Impact &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="fade-in" id="news-insights">
+        <h2>Latest News & Insights.</h2>
+        <div class="content-grid">
+            <div class="content-item">
+                <img src="https://images.unsplash.com/photo-1582213782179-e0d53f2dc345?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHwxNXx8Y29uZmVyZW5jZSUyMG5pZ2VyaWF8ZW58MHx8fHwxNzIwOTQ4MzM0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Nigeria Energy Summit" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x280/87CEEB/FFFFFF?text=Nigeria+Energy+Summit';">
+                <div class="content-body">
+                    <h3>Endotek Presents at Nigeria Energy Summit.</h3>
+                    <p>Our CEO highlighted the potential of indigenous renewable energy solutions at the annual Nigeria Energy Summit, drawing significant attention from industry leaders.</p>
+                    <a href="#" class="cta-button-small">Read More &rarr;</a>
+                </div>
+            </div>
+            <div class="content-item">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHw3fHxhZ3JpY3VsdHVyZSUyMHRlYW0lMjBwYXJ0bmVyc2hpcHxlbnwwfHx8fDE3MjA5NDgzNTl8MA&ixlib=rb-4.0.3&q=80&w=1080" alt="Agri-Tech Partnership" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x280/8FBC8F/FFFFFF?text=Agri-Tech+Partnership';">
+                <div class="content-body">
+                    <h3>New Agri-Tech Partnership Launched.</h3>
+                    <p>We're excited to announce a strategic partnership with AgriGrow Tech to accelerate the adoption of precision agriculture among smallholder farmers.</p>
+                    <a href="#" class="cta-button-small">View Press Release &rarr;</a>
+                </div>
+            </div>
+            <div class="content-item">
+                <img src="https://images.unsplash.com/photo-1543269824-cb8853b7543f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w1MDcwMzV8MHwxfHNlYXJjaHwxMHx8d29tZW4lMjBlbXBvd2VybWVudCUyMG5pZ2VyaWF8ZW58MHx8fHwxNzIwOTQ4Mzg0fDA&ixlib=rb-4.0.3&q=80&w=1080" alt="Community Workshop" onerror="this.onerror=null;this.src='https://via.placeholder.com/400x280/FFD700/FFFFFF?text=Community+Workshop';">
+                <div class="content-body">
+                    <h3>Empowering Women in Agriculture Workshop.</h3>
+                    <p>Our recent workshop in Bayelsa equipped over 200 women with advanced farming techniques and financial literacy skills.</p>
+                    <a href="#" class="cta-button-small">See Photo Gallery &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="fade-in cta-bottom">
+        <h2>Ready to Shape Nigeria's Future with Endotek?</h2>
+        <div class="cta-buttons">
+            <a href="#contact">Contact Endotek Team</a>
+            <a href="#investor-portal-tab">Explore Investment</a>
+            <a href="#community-hub-tab">Join Our Community</a>
+        </div>
+        <a href="#" class="subtle-link">Discover Career Opportunities &rarr;</a>
+    </section>
+
+    <section class="fade-in" id="contact">
+        <h2>Get in Touch with Endotek.</h2>
+        <div class="contact-form-container">
+            <form action="#" method="POST">
+                <label for="name">Your Full Name:</label>
+                <input type="text" id="name" name="name" placeholder="E.g., John Doe" required>
+
+                <label for="email">Your Email Address:</label>
+                <input type="email" id="email" name="email" placeholder="E.g., john.doe@example.com" required>
+
+                <label for="subject">Subject of Inquiry:</label>
+                <input type="text" id="subject" name="subject" placeholder="E.g., Partnership Opportunities" required>
+
+                <label for="message">Your Message:</label>
+                <textarea id="message" name="message" rows="8" placeholder="Tell us how we can help you." required></textarea>
+
+                <button type="submit">Send Your Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="logo">Endotek</p>
+        <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#what-we-do">Pillars</a></li>
+            <li><a href="#projects">Initiatives</a></li>
+            <li><a href="#news-insights">Insights</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+        </ul>
+        <div class="social-icons">
+            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a> 
+            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>Head Office: Abuja, Nigeria</p>
+        <p>+234 800 ENDOTEK (Simulated) | info@endotek.org</p>
+        <p>Copyright &copy; 2025 Endotek. All Rights Reserved.</p>
+    </footer>
+
+    <div class="floating-action-buttons">
+        <span class="fab-item" onclick="toggleModal('ussd-modal-overlay')" role="button" aria-label="USSD Mode"><i class="fas fa-mobile-alt"></i> USSD</span>
+        <span class="fab-item" id="offline-status" role="status" aria-label="Offline Mode Indicator"><i class="fas fa-plug"></i> Offline Mode</span>
+    </div>
+
+    <div id="premium-modal-overlay" class="modal-overlay" onclick="toggleModal(this.id)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3>Endotek Premium Access</h3>
+            <p>Unlock advanced features and exclusive content:</p>
+            <ul>
+                <li>Ad-free Browse experience</li>
+                <li>Priority customer support & dedicated account manager</li>
+                <li>**For Investors:** Exclusive deep-dive project reports & early access to new initiatives</li>
+                <li>**For Community:** Advanced skill-building courses & private networking events</li>
+            </ul>
+            <p>Choose your plan:</p>
+            <button onclick="alert('Investor Premium Subscribed! (Simulated)')">Investor Premium (₦30,000/yr)</button>
+            <button onclick="alert('Community Premium Subscribed! (Simulated)')">Community Premium (₦500/month)</button>
+            <button onclick="toggleModal('premium-modal-overlay')">Close</button>
+        </div>
+    </div>
+
+    <div id="chatbot-modal-overlay" class="modal-overlay" onclick="toggleModal(this.id)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3>Endotek AI Assistant</h3>
+            <p id="chatbot-response">Hello! I'm your Endotek AI Assistant. How can I help you learn about our sustainable initiatives, investment opportunities, or community programs?</p>
+            <input type="text" id="chatbot-input" placeholder="Ask about Endotek..." aria-label="Chatbot Input">
+            <button onclick="simulateChatbot()" aria-label="Send Chatbot Message">Send</button>
+            <button onclick="toggleModal('chatbot-modal-overlay')">Close</button>
+        </div>
+    </div>
+
+    <div id="ussd-modal-overlay" class="modal-overlay" onclick="toggleModal(this.id)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3>Endotek USSD Mobile Hub</h3>
+            <p style="font-family: monospace; text-align: left; background-color: #f0f0f0; padding: 15px; border-radius: 8px; margin-bottom: 25px;">
+                Welcome to Endotek Mobile Hub!<br>
+                1. Explore Projects<br>
+                2. Partner with Us<br>
+                3. Join Community Forum<br>
+                4. Access Skill-Share<br>
+                5. Check Impact Metrics<br>
+                * Reply with option number
+            </p>
+            <select id="ussd-option" aria-label="Select USSD Option">
+                <option value="1">1. Explore Projects</option>
+                <option value="2">2. Partner with Us</option>
+                <option value="3">3. Join Community Forum</option>
+                <option value="4">4. Access Skill-Share</option>
+                <option value="5">5. Check Impact Metrics</option>
+            </select>
+            <button onclick="simulateUSSD()">Submit Option</button>
+            <button onclick="toggleModal('ussd-modal-overlay')">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // --- Core Functions ---
+
+        // Smooth scroll for internal navigation links
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Update active class for nav links
+                document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Sticky Header with Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 50) { // Adjust scroll threshold as needed
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Section Fade-In on Scroll
+        const sections = document.querySelectorAll('section');
+        const fadeInOnScroll = () => {
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (sectionTop < windowHeight * 0.8) { // When 80% of section is visible
+                    section.classList.add('fade-in');
+                }
+            });
+        };
+        window.addEventListener('scroll', fadeInOnScroll);
+        fadeInOnScroll(); // Run on load to fade in visible sections immediately
+
+        // Toggle Modals (reusable for Premium, Chatbot, USSD)
+        function toggleModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.toggle('active');
+            document.body.style.overflow = modal.classList.contains('active') ? 'hidden' : ''; // Prevent scroll when modal is active
+        }
+
+        // --- Investor Portal & Community Hub Tab System ---
+
+        // Main Tabs (Investor Portal / Community Hub)
+        function showTab(tabId, element) {
+            // Deactivate all main tabs and buttons
+            document.querySelectorAll('.content-tab-panel').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-navigation button').forEach(btn => btn.classList.remove('active'));
+
+            // Activate selected tab and button
+            document.getElementById(tabId).classList.add('active');
+            element.classList.add('active');
+
+            // If switching to Investor Portal, trigger metrics animation
+            if (tabId === 'investor-portal-tab') {
+                updateInvestorMetrics();
+            } else if (tabId === 'community-hub-tab') {
+                // Ensure the active sub-tab is shown for community hub
+                const firstSubTabButton = document.querySelector('#community-hub-tab .sub-tab-navigation button.active');
+                if (firstSubTabButton) {
+                    showSubTab(firstSubTabButton.dataset.target, firstSubTabButton);
+                } else { // If no active sub-tab, activate the first one by default
+                    const defaultSubTabButton = document.querySelector('#community-hub-tab .sub-tab-navigation button');
+                    if (defaultSubTabButton) {
+                        showSubTab(defaultSubTabButton.dataset.target, defaultSubTabButton);
+                    }
+                }
+            }
+        }
+
+        // Sub-Tabs (Forum, Skills, Marketplace, Crowdfunding)
+        function showSubTab(subTabId, element) {
+            // Deactivate all sub-tab panels and buttons within the current main tab
+            document.querySelectorAll('.sub-content-panel').forEach(panel => panel.classList.remove('active'));
+            document.querySelectorAll('.sub-tab-navigation button').forEach(btn => btn.classList.remove('active'));
+
+            // Activate selected sub-tab panel and button
+            document.getElementById(subTabId).classList.add('active');
+            element.classList.add('active');
+            element.closest('.tab-section').scrollIntoView({ behavior: 'smooth', block: 'start' }); // Scroll to the tab section
+        }
+
+        // --- Metrics Animation & Update ---
+        let investorMetrics = {
+            capitalDeployed: { value: 500000000, target: 700000000 },
+            scaledProjects: { value: 12, target: 20 },
+            beneficiaryCount: { value: 150000, target: 200000 }
+        };
+
+        function updateInvestorMetrics() {
+            // Use setTimeout to ensure the CSS transition runs from initial 0% width
+            setTimeout(() => {
+                // Capital Deployed
+                const capitalEl = document.getElementById('capital-deployed');
+                const capitalProgressFill = document.getElementById('capital-progress');
+                const capitalProgressText = capitalProgressFill.querySelector('.progress-text');
+                capitalEl.textContent = '₦' + investorMetrics.capitalDeployed.toLocaleString();
+                const capitalPercentage = Math.min((investorMetrics.capitalDeployed / investorMetrics.capitalDeployed.target) * 100, 100);
+                capitalProgressFill.style.width = `${capitalPercentage}%`;
+                capitalProgressText.textContent = `${Math.round(capitalPercentage)}%`;
+
+                // Scaled Projects
+                const scaledEl = document.getElementById('scaled-projects');
+                const scaledProgressFill = document.getElementById('scaled-progress');
+                const scaledProgressText = scaledProgressFill.querySelector('.progress-text');
+                scaledEl.textContent = investorMetrics.scaledProjects.toLocaleString();
+                const scaledPercentage = Math.min((investorMetrics.scaledProjects / investorMetrics.scaledProjects.target) * 100, 100);
+                scaledProgressFill.style.width = `${scaledPercentage}%`;
+                scaledProgressText.textContent = `${Math.round(scaledPercentage)}%`;
+
+                // Community Beneficiaries
+                const beneficiaryEl = document.getElementById('beneficiary-count');
+                const beneficiaryProgressFill = document.getElementById('beneficiary-progress');
+                const beneficiaryProgressText = beneficiaryProgressFill.querySelector('.progress-text');
+                beneficiaryEl.textContent = investorMetrics.beneficiaryCount.toLocaleString();
+                const beneficiaryPercentage = Math.min((investorMetrics.beneficiaryCount / investorMetrics.beneficiaryCount.target) * 100, 100);
+                beneficiaryProgressFill.style.width = `${beneficiaryPercentage}%`;
+                beneficiaryProgressText.textContent = `${Math.round(beneficiaryPercentage)}%`;
+            }, 100); // Small delay
+        }
+
+        // --- Simulated Interactions ---
+
+        // USSD Simulation
+        function simulateUSSD() {
+            const option = document.getElementById('ussd-option').value;
+            let responseMessage = `USSD Response: You selected option ${option}. Processing...`;
+            alert(responseMessage);
+            toggleModal('ussd-modal-overlay'); // Close USSD modal after selection
+            
+            // Navigate based on USSD option
+            if (option === '1') { // Explore Projects
+                document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+            } else if (option === '2') { // Partner with Us
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            } else if (option === '3') { // Join Community Forum (simulated click)
+                showTab('community-hub-tab', document.querySelector('.tab-navigation button:nth-child(2)'));
+                showSubTab('forum-panel', document.querySelector('#community-hub-tab .sub-tab-navigation button:nth-child(1)'));
+            } else if (option === '4') { // Access Skill-Share (simulated click)
+                showTab('community-hub-tab', document.querySelector('.tab-navigation button:nth-child(2)'));
+                showSubTab('skills-panel', document.querySelector('#community-hub-tab .sub-tab-navigation button:nth-child(2)'));
+            } else if (option === '5') { // Check Impact Metrics
+                showTab('investor-portal-tab', document.querySelector('.tab-navigation button:nth-child(1)'));
+                // No need to scroll specifically, showTab already scrolls to the parent tab-section
+            }
+        }
+
+        // Chatbot Simulation
+        function simulateChatbot() {
+            const input = document.getElementById('chatbot-input').value.toLowerCase();
+            const responseEl = document.getElementById('chatbot-response');
+            let response = 'I am Endotek\'s AI Assistant. How can I help you learn about our sustainable initiatives in Nigeria?';
+
+            if (input.includes('invest') || input.includes('partner') || input.includes('investor')) {
+                response = 'Interested in investing? Endotek offers transparent impact investment opportunities with real-time metrics. Visit our Investor Portal for details!';
+            } else if (input.includes('community') || input.includes('hub') || input.includes('join')) {
+                response = 'Our Community Hub connects Nigerians for skill-sharing, local commerce, and transparent crowdfunding of impactful projects.';
+            } else if (input.includes('project') || input.includes('impact') || input.includes('initiatives')) {
+                response = 'Endotek focuses on Environmental Solutions, Agricultural Innovation, and Community Development. Explore our "Our Initiatives" section for specific projects and case studies.';
+            } else if (input.includes('ceo') || input.includes('founder') || input.includes('leadership')) {
+                response = 'Our founder and CEO is Prof E.O Ekanem FCSN, a globally recognized Environmental and Analytical Chemist who drives our scientific approach.';
+            } else if (input.includes('premium')) {
+                response = 'Endotek Premium offers enhanced features like ad-free access, priority support, and exclusive content. It\'s available for both investors and community members with tailored benefits.';
+            } else if (input.includes('contact')) {
+                response = 'You can reach our team via the contact form at the bottom of this page or send an email directly to info@endotek.org.';
+            } else if (input.includes('location') || input.includes('office')) {
+                response = 'Our Head Office is located in Abuja, Nigeria. We operate and impact communities across the country.';
+            } else if (input.includes('thanks') || input.includes('thank you')) {
+                response = 'You\'re welcome! Is there anything else I can assist you with?';
+            }
+            else {
+                response = 'I am still learning and evolving! Please try rephrasing your question or explore our website sections for more comprehensive information. Feel free to contact our human team if your query is urgent.';
+            }
+            
+            responseEl.textContent = response;
+            document.getElementById('chatbot-input').value = ''; // Clear input field
+        }
+
+        // Language selection
+        document.getElementById('language').addEventListener('change', function() {
+            const langName = this.options[this.selectedIndex].text;
+            alert(`Language switched to: ${langName}. (Full localization coming soon!)`);
+            // In a real application, you would load translations here
+        });
+
+        // Offline Mode Indicator (simple network status check)
+        window.addEventListener('load', () => {
+            const offlineIndicator = document.getElementById('offline-status');
+            const updateOnlineStatus = () => {
+                if (navigator.onLine) {
+                    offlineIndicator.innerHTML = '<i class="fas fa-globe"></i> Online Mode';
+                    offlineIndicator.style.backgroundColor = 'var(--endotek-blue-medium)';
+                } else {
+                    offlineIndicator.innerHTML = '<i class="fas fa-plug"></i> Offline Mode';
+                    offlineIndicator.style.backgroundColor = '#6c757d'; // A grey color for offline
+                }
+            };
+            
+            updateOnlineStatus(); // Set initial status
+            window.addEventListener('online', updateOnlineStatus);
+            window.addEventListener('offline', updateOnlineStatus);
+        });
+
+        // --- Initial Load Actions ---
+        document.addEventListener('DOMContentLoaded', () => {
+            // Activate the first main tab by default
+            const firstMainTabButton = document.querySelector('.tab-navigation button:first-child');
+            if (firstMainTabButton) {
+                showTab('investor-portal-tab', firstMainTabButton);
+            }
+            // Activate the first sub-tab of the community hub by default
+            const firstSubTabButton = document.querySelector('#community-hub-tab .sub-tab-navigation button:first-child');
+            if (firstSubTabButton) {
+                showSubTab('forum-panel', firstSubTabButton);
+            }
+
+            // Ensure images load correctly or show placeholders
+            document.querySelectorAll('img').forEach(img => {
+                img.onerror = function() {
+                    this.src = 'https://via.placeholder.com/400x280/ccc/fff?text=Image+Not+Found'; // Fallback generic placeholder
+                };
+            });
+        });
+    </script>
+</body>
+</html>
